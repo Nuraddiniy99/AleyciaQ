@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>21 Wonders of Aleycia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- AUDIO BGM (Gratis dari SoundHelix) -->
+  <audio id="bgm" loop crossorigin="anonymous">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- TIME LOCK SCREEN -->
+  <section id="page-0" class="page active">
+    <div class="time-lock">
+      <div class="lock-icon">🔒</div>
+      <h1 class="font-display">Sebentar Lagi...</h1>
+      <p class="lock-sub">Kejutan untuk Aleycia siap dibuka</p>
+      <div class="countdown" id="countdown">00:00:00:00</div>
+      <div class="heart-beat">💖</div>
+      <button id="btn-enter" class="btn hidden" onclick="App.unlock()">Buka Kejutan 💝</button>
+      <p class="dev-hint">Dev: ubah DEV_MODE di app.js</p>
+    </div>
+  </section>
+
+  <!-- PAGE 1: WAX SEAL -->
+  <section id="page-1" class="page">
+    <div class="envelope-container">
+      <div class="envelope" id="envelope">
+        <div class="wax-seal" id="wax-seal">
+          <span class="seal-letter">A</span>
+          <div class="crack" id="crack"></div>
+        </div>
+      </div>
+      <div class="envelope-flap"></div>
+      <div class="invitation hidden" id="invitation">
+        <p class="font-script">Untuk Aleycia,</p>
+        <p>Jangan dibuka sebelum 1 Mei...<br>tapi boong 😘</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: STARDUST NAME -->
+  <section id="page-2" class="page">
+    <h2 class="font-display page-title">Susun Namaku</h2>
+    <p class="page-sub">Tap huruf sesuai urutan: A - L - E - Y - C - I - A</p>
+    <div class="star-field" id="star-field"></div>
+    <div class="name-progress" id="name-progress"></div>
+  </section>
+
+  <!-- PAGE 3: SLIDE PUZZLE -->
+  <section id="page-3" class="page">
+    <h2 class="font-display page-title">Puzzle Kenangan</h2>
+    <canvas id="puzzle-canvas" width="300" height="400"></canvas>
+    <p class="game-hint">Geser tile ke slot kosong</p>
+  </section>
+
+  <!-- PAGE 4: QUIZ -->
+  <section id="page-4" class="page">
+    <h2 class="font-display page-title">Seberapa Kenal Kamu?</h2>
+    <div class="quiz-container" id="quiz-container">
+      <div class="quiz-progress"><div class="quiz-bar" id="quiz-bar"></div></div>
+      <div class="quiz-question" id="quiz-question"></div>
+      <div class="quiz-options" id="quiz-options"></div>
+    </div>
+  </section>
+
+  <!-- PAGE 5: LOVE TANK -->
+  <section id="page-5" class="page">
+    <h2 class="font-display page-title">Isi Cintaku</h2>
+    <div class="tank-container" id="tank-container">
+      <div class="tank">
+        <div class="tank-liquid" id="tank-liquid"></div>
+        <div class="tank-bubbles"></div>
+      </div>
+      <div class="tank-percent" id="tank-percent">0%</div>
+    </div>
+    <p class="game-hint">Tap layar berulang kali!</p>
+    <div class="tank-message hidden font-script" id="tank-message">
+      Aku minta maaf hampir 1 bulan gak balas chat kamu,<br>
+      namun nanti kamu tau apa alasannya 😘
+    </div>
+  </section>
+
+  <!-- PAGE 6: RUNAWAY BUTTON -->
+  <section id="page-6" class="page">
+    <h2 class="font-display page-title">Kamu Yakin?</h2>
+    <p class="page-sub">Coba tap tombol di bawah ini 😏</p>
+    <div class="runaway-stage" id="runaway-stage">
+      <button class="btn-runaway" id="btn-runaway">Ya, aku yakin!</button>
+      <div class="runaway-particles" id="runaway-particles"></div>
+    </div>
+    <p class="runaway-text hidden" id="runaway-text">Oke oke, aku pasrah 😭</p>
+  </section>
+
+  <!-- PAGE 7: SCRATCH -->
+  <section id="page-7" class="page">
+    <h2 class="font-display page-title">Gosok untuk Lihat</h2>
+    <div class="scratch-container">
+      <img class="scratch-img" src="https://picsum.photos/seed/aleycia7/300/400" alt="memory">
+      <canvas id="scratch-canvas" width="300" height="400"></canvas>
+    </div>
+    <p class="game-hint">Gosok layar dengan jari!</p>
+  </section>
+
+  <!-- PAGE 8: CROSSWORD -->
+  <section id="page-8" class="page">
+    <h2 class="font-display page-title">TTS Aleycia</h2>
+    <div class="crossword-wrapper">
+      <div class="crossword-grid" id="crossword-grid"></div>
+      <div class="crossword-clues">
+        <p><strong>Mendatar:</strong> 1. Namaku (7) | 3. Bulan lahir (3)</p>
+        <p><strong>Menurun:</strong> 2. Warna favorit (4) | 4. Tahun lahir (4)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 9: 22 CANDLES -->
+  <section id="page-9" class="page">
+    <h2 class="font-display page-title">Tiup Lilinnya!</h2>
+    <div class="cake-container" id="cake-container">
+      <div class="cake-base"></div>
+      <div class="candles" id="candles"></div>
+    </div>
+    <p class="game-hint">Tap lilin untuk padamkan (atau tiup ke mic!)</p>
+    <button class="btn-mic" id="btn-mic">🎤 Aktifkan Mic</button>
+  </section>
+
+  <!-- PAGE 10: JIGSAW -->
+  <section id="page-10" class="page">
+    <h2 class="font-display page-title">Jigsaw Kita</h2>
+    <div class="jigsaw-container" id="jigsaw-container">
+      <div class="jigsaw-dropzone" id="jigsaw-dropzone"></div>
+      <div class="jigsaw-pieces" id="jigsaw-pieces"></div>
+    </div>
+  </section>
+
+  <!-- PAGE 11: CIPHER -->
+  <section id="page-11" class="page">
+    <h2 class="font-display page-title">Pecahkan Kode</h2>
+    <div class="cipher-box">
+      <p class="cipher-text" id="cipher-text">HRH HSHZ PU TLUZ PZABUNL WLV KPJRPAO AVKLSB VBRUZ WLV</p>
+      <div class="cipher-slider-wrap">
+        <label>Shift: <span id="shift-val">0</span></label>
+        <input type="range" min="0" max="25" value="0" id="cipher-slider">
+      </div>
+      <p class="cipher-decoded font-script" id="cipher-decoded"></p>
+      <button class="btn" id="btn-cipher" disabled>Verifikasi 💘</button>
+    </div>
+  </section>
+
+  <!-- PAGE 12: BUBBLES -->
+  <section id="page-12" class="page">
+    <h2 class="font-display page-title">Pecahkan Gelembungnya!</h2>
+    <div class="bubbles-field" id="bubbles-field"></div>
+    <div class="bubble-secret hidden font-script" id="bubble-secret">
+      Ehh gimana sihh kamu,<br>ketinggalan nihh... CANTIKNYA 🤭
+    </div>
+  </section>
+
+  <!-- PAGE 13: THEN & NOW -->
+  <section id="page-13" class="page">
+    <h2 class="font-display page-title">Dulu vs Sekarang</h2>
+    <div class="slider-container">
+      <div class="slider-img before" style="background-image:url('https://picsum.photos/seed/aleycia13a/400/500')"></div>
+      <div class="slider-img after" id="slider-after" style="background-image:url('https://picsum.photos/seed/aleycia13b/400/500')"></div>
+      <div class="slider-handle" id="slider-handle"></div>
+    </div>
+    <p class="game-hint">Geser untuk bandingkan</p>
+  </section>
+
+  <!-- PAGE 14: THIS OR THAT -->
+  <section id="page-14" class="page">
+    <h2 class="font-display page-title">This or That</h2>
+    <div class="tot-container" id="tot-container">
+      <div class="tot-card left" id="tot-left"></div>
+      <div class="tot-card right" id="tot-right"></div>
+      <div class="tot-vs">VS</div>
+    </div>
+    <div class="tot-progress" id="tot-progress">1 / 6</div>
+  </section>
+
+  <!-- PAGE 15: BALLOONS -->
+  <section id="page-15" class="page">
+    <h2 class="font-display page-title">22 Balon Cinta</h2>
+    <div class="balloons-field" id="balloons-field"></div>
+    <div class="balloon-msg hidden" id="balloon-msg">
+      <p class="font-script">HALOO CANTIKKUUUU</p>
+      <p class="font-script">MY BABY ANGELL 😘</p>
+      <p>Happy birthday sayanggg</p>
+    </div>
+  </section>
+
+  <!-- PAGE 16: SHAKE EGG -->
+  <section id="page-16" class="page">
+    <h2 class="font-display page-title">Goyangkan HP-mu!</h2>
+    <div class="egg-stage">
+      <div class="egg" id="egg">🥚</div>
+      <div class="egg-crack" id="egg-crack"></div>
+    </div>
+    <div class="shake-counter" id="shake-counter">0 / 100</div>
+    <div class="shake-bar"><div class="shake-fill" id="shake-fill"></div></div>
+    <p class="game-hint">Shake shake shake!</p>
+    <div class="egg-msg hidden font-script" id="egg-msg">jago jugaa kamuu🤭</div>
+  </section>
+
+  <!-- PAGE 17: UNSCRAMBLE -->
+  <section id="page-17" class="page">
+    <h2 class="font-display page-title">Susun Kata Cinta</h2>
+    <div class="unscramble-target" id="unscramble-target"></div>
+    <div class="unscramble-letters" id="unscramble-letters"></div>
+    <div class="unscramble-sentence hidden font-script" id="unscramble-sentence">
+      BERSAMA ALEYCIA CINTA TULUS DILANGITKAN
+    </div>
+  </section>
+
+  <!-- PAGE 18: 3D CAROUSEL -->
+  <section id="page-18" class="page">
+    <h2 class="font-display page-title">Kenangan Indah</h2>
+    <div class="carousel-3d" id="carousel-3d">
+      <div class="carousel-track" id="carousel-track"></div>
+    </div>
+    <p class="game-hint">Swipe untuk jelajahi • Pinch foto ke-7</p>
+    <div class="carousel-secret hidden" id="carousel-secret">✨ Foto spesial terbuka! ✨</div>
+  </section>
+
+  <!-- PAGE 19: TIMELINE -->
+  <section id="page-19" class="page">
+    <h2 class="font-display page-title">Timeline Kita</h2>
+    <div class="timeline-box">
+      <label>Tanggal spesial kita?</label>
+      <input type="date" id="tl-date">
+      <label>Sejak kapan nyaman denganku?</label>
+      <input type="text" id="tl-text" placeholder="Tulis bebas...">
+      <button class="btn" id="btn-tl">Hitung 💕</button>
+      <div class="timeline-result hidden" id="timeline-result"></div>
+    </div>
+  </section>
+
+  <!-- PAGE 20: LETTER -->
+  <section id="page-20" class="page">
+    <h2 class="font-display page-title">Surat untukmu</h2>
+    <div class="letter-paper" id="letter-paper">
+      <div class="letter-content" id="letter-content"></div>
+      <div class="letter-reply">
+        <textarea id="letter-reply" placeholder="Balas surat ini di sini... 🥺"></textarea>
+        <button class="btn" onclick="App.saveReply()">Simpan Balasan</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 21: GRAND FINALE -->
+  <section id="page-21" class="page">
+    <div class="finale-container">
+      <h1 class="font-display finale-title">Happy 22nd Birthday</h1>
+      <h2 class="font-script finale-name">Aleycia Puspita Firda</h2>
+      <div class="finale-number" id="finale-number">22</div>
+      <div class="wishes-grid" id="wishes-grid"></div>
+      <canvas id="fireworks-canvas"></canvas>
+      <div class="finale-actions">
+        <button class="btn" onclick="App.restart()">Ulangi Lagi 💫</button>
+        <button class="btn" onclick="App.saveMemory()">Simpan Kenangan 📸</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL UI -->
+  <div class="progress-dots" id="progress-dots"></div>
+  <div class="page-nav">
+    <button class="nav-btn" id="nav-prev" onclick="App.prev()">◀</button>
+    <span class="nav-page" id="nav-page">1 / 21</span>
+    <button class="nav-btn" id="nav-next" onclick="App.next()">▶</button>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="games.js"></script>
+</body>
+</html>
