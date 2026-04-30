@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════════ */
 
 // ⚠️ DEV OVERRIDE - UBAH KE true UNTUK BYPASS TIME LOCK
-const DEV_MODE = false;
+const DEV_MODE = true;
 
 const App = {
   current: 0,
